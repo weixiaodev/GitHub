@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,user-scalable=no"/>
+	<title>ClockFace App</title>
+	<style>
+		body {
+			font-size: 30px;
+			background-color: grey;
+		}
+
+		.clock {
+			float: right;
+		}
+
+		.content {
+			display: block;
+			text-align: center;
+		}
+		.content-text {
+			display: inline-block;
+			font-size: 25px;
+		}
+		.feed-block {
+			display:block;
+
+		}
+
+		.feed {
+			display: block;
+			font-size: 20px;
+			text-align: left;
+			padding: 10px;
+			background-color: rgba(255, 255, 255, 1);
+		}
+		.feed:nth-child(odd) {
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+
+		#log {
+			font-size: 8px;
+			padding-top: 40px;
+			display: block;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+<body>
+	<div class="content">
+		<div class="clock">
+			<span class=content-text id="time"></span>
+		</div>
+		<div id="log"></div>
+		<div class="feed-block" id="feedContainer"></div>
+	</div>
+</body>
+<script>
+
+//var feedUrl = 'http://www.samsung.com/us/function/rss/rssFeedItemList.do?typeCd=NEWS',
+var feedUrl = 'http://feeds.reuters.com/Reuters/worldNews',
+timeElement = document.getElementById('time'),
+logElement = document.getElementById('log'),
+i = 0;
+
+function log(msg, sameLine) {
+	logElement.innerHTML += msg + (sameLine === true ? '' : '<br>');
+}
+
+/**
+ * Displays current time
+ */
+function getTime() {
+	var date;
+
+	if (window.tizen) {
+		date = new tizen.TZDate();
+	} else {
+		date = new Date();
+	}
+	timeElement.innerHTML = date.toTimeString().substr(0, 8);
+}
+
+/**
+ * Process received response
+ * @param response
+ */
+function processResponse(response) {
+	var titles = response.querySelectorAll('item > title'),
+	feedContainer = document.getElementById('feedContainer'),
+	i, max = 5, tmp;
+
+	feedContainer.innerHTML = '';
+	max = titles.length < max ? titles.length : max;
+
+	for (i = 0; i < max; i++) {
+		tmp = document.createElement('div');
+		tmp.className = 'feed';
+		tmp.innerHTML = titles[i].textContent;
+		feedContainer.appendChild(tmp);
+	}
+}
+
+/**
+ * State change handler, more about XHR can be found here:
+ * http://www.w3.org/TR/XMLHttpRequest2/
+ */
+function stateChangeHandler() {
+	log('.', true);
+	if(this.readyState === this.DONE) {
+		log('');
+		log('Loaded!');
+		if(this.status == 200 && this.responseXML != null) {
+			log('Loaded successfully');
+			processResponse(this.responseXML);
+		}
+	}
+}
+
+function getFeed() {
+	log('Start fetching feeds');
+	var client = new XMLHttpRequest();
+	client.onreadystatechange = stateChangeHandler;
+	client.timeout = 3000;
+	client.ontimeout = log.bind('Timeout!');
+
+	client.open("GET", feedUrl);
+	client.send();
+}
+
+function appInit() {
+	window.setInterval(getTime, 1000);
+	getFeed();
+}
+
+appInit();
+</script>
+</html>

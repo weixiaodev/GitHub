@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/BasicApp" version="1.0.0" viewmodes="maximized">
+    <access origin="*" subdomains="true"></access>
+    <tizen:application id="tehcqECFBp.BasicApp" package="tehcqECFBp" required_version="1.0"/>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <feature name="http://tizen.org/feature/network.internet"/>
+    <icon src="icon.png"/>
+    <tizen:metadata key="AccessoryServicesLocation" value="a.xml"/>
+    <name>HttpRequest</name>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:setting background-support="enable"/>
+    <tizen:setting hwkey-event="enable"/>
+</widget>

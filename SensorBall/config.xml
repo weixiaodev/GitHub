@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://sample-web-application.tizen.org/SensorBall-gear" version="2.2.0" viewmodes="fullscreen">
+	<tizen:application id="QiIuG1b0CV.SensorBall" package="QiIuG1b0CV" required_version="2.2"/>
+	<content src="index.html"/>
+	<icon src="icon.png"/>
+	<name>Sensor Ball-Gear</name>
+	<feature name="http://tizen.org/feature/screen.size.normal.720.1280"/>
+	<tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+	<tizen:privilege name="http://tizen.org/privilege/power"/>
+	<tizen:setting hwkey-event="enable"/>
+</widget>

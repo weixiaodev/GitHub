@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://com.example.samsung/TouchPaint" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="vsu6rnotfn.TouchPaint" package="vsu6rnotfn" required_version="1.0"/>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.320.320"/>
+    <icon src="icon.png"/>
+    <name>TouchPaint</name>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/system"/>
+    <tizen:setting hwkey-event="enable"/>
+</widget>

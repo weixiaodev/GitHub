@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+   <application name = "myApplication">
+      <serviceProfile role = "consumer"
+                      name = "myApplication"
+                      id = "/system/myApp"
+                      version = "2.0"
+                      serviceLimit = "ONE_PEERAGENT"
+                      serviceTimeout = "30">
+         <supportedTransports>
+            <transport type = "TRANSPORT_BT"/>
+         </supportedTransports>
+         <serviceChannel id = "100"
+                         dataRate = "high"
+                         priority = "low"
+                         reliability = "enable"/>
+      </serviceProfile>
+   </application>
+</resources>
